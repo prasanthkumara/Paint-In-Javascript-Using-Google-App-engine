@@ -1,7 +1,6 @@
 import wsgiref.handlers
 import json
 import pickle
-import jinja2
 from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import Request
@@ -73,13 +72,7 @@ class mainh(webapp.RequestHandler):
 		#retrieve and edit
 	         	
 		
-def main():
-    app = webapp.WSGIApplication([
-        ('/.*',mainh)], debug=True)
-    wsgiref.handlers.CGIHandler().run(app)
+app = webapp.WSGIApplication([('/.*',mainh)], debug=True)
 
-
-if __name__ == "__main__":
-    main()
 
 
