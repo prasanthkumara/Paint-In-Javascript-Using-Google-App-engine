@@ -1,0 +1,496 @@
+
+
+<html>
+<head>
+<style type="text/css">
+body
+{
+	background-color:#FFE4C4;
+}
+
+</style>
+<table>
+<tr>
+<th valign="top">
+<div align="left">
+<canvas id="mycanvas" width=900 height=500 style="border: 3px solid black"></canvas><br>
+<div>
+<input type="button" value="LINE" onclick="line();">
+<input type="button" value="PENCIL" onclick="stroke();">
+<input type="button" value="CLEAR" onclick="clear1();">
+<input type="button" value="ERASE" onclick="erase();">
+<input type="button" value="RECTANGLE" onclick="rect();">
+<input type="button" value="CIRCLE" onclick="circle();">
+<form >
+<input type="text" id="tex">
+<input type="button" value="SAVE" onclick="save();">
+<a href="/"><b>Create New</b></a>
+</form>
+<input type="button" id="press" value="FILL&DRAW" onclick="fillobject('press')">
+
+<font size="3" face="philosopher" color="black"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspThickness</b></font>
+
+
+<select id="sbox" onchange="size1()">
+<option value="2">2px</option>
+<option value="4">4px</option>
+<option value="6" >6px</option>
+<option value="8">8px</option>
+<option value="10">10px</option>
+</select>
+<font size="3" face="philosopher" color="black"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspEraser Thickness</b></font>
+<select id="eraser" onchange="erthick()">
+<option value="2">2px</option>
+<option value="8">8px</option>
+<option value="15">10px</option>
+</select>
+
+<br>
+
+<table>
+<tr>
+<td><button style ="height:20px;width:20px; background-color:860101" onclick="setcolor('860101');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:8F0202"onclick="setcolor('8F0202');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:980202"onclick="setcolor('980202');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:A10101"onclick="setcolor('A10101');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:AA0202"onclick="setcolor('AA0202');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:B60202"onclick="setcolor('B60202');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:C10101"onclick="setcolor('C10101');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:CF0101"onclick="setcolor('CF0101');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:E00202"onclick="setcolor('E00202');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:F40505"onclick="setcolor('F40505');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:FE0202"onclick="setcolor('FE0202');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:red"onclick="setcolor('red');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:0EFE01"onclick="setcolor('0EFE01');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:0ED604"onclick="setcolor('0ED604');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:0DBD04"onclick="setcolor('0DBD04');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:0CA104"onclick="setcolor('0CA104');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:099002"onclick="setcolor('099002');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:097C02"onclick="setcolor('097C02');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:076A02"onclick="setcolor('076A02');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:075903"onclick="setcolor('075903');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:064602"onclick="setcolor('064602');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:043501"onclick="setcolor('043501');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:032701"onclick="setcolor('032701');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:011200"onclick="setcolor('011200');"></button></td>
+</tr>
+
+
+<tr>
+<td><button style ="height:20px;width:20px; background-color:001212"onclick="setcolor('001212');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:011E1F"onclick="setcolor('011E1F');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:012B2C"onclick="setcolor('012B2C');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:013638"onclick="setcolor('013638');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:024346"onclick="setcolor('024346');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:025054"onclick="setcolor('025054');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:02656A"onclick="setcolor('02656A');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:029097"onclick="setcolor('029097');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:00A6AE"onclick="setcolor('00A6AE');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:02BAC4"onclick="setcolor('02BAC4');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:02CDD8"onclick="setcolor('02CDD8');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:02DAE6"onclick="setcolor('02DAE6');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:0408FF"onclick="setcolor('0408FF');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:0206DD"onclick="setcolor('0206DD');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:0609B5"onclick="setcolor('0609B5');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:02059A"onclick="setcolor('02059A');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:010381"onclick="setcolor('010381');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:01035F"onclick="setcolor('01035F');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:01023E"onclick="setcolor('01023E');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:01022B"onclick="setcolor('01022B');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:010121"onclick="setcolor('010121');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:000012"onclick="setcolor('000012');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:000010"onclick="setcolor('000010');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:01011C"onclick="setcolor('01011C');"></button></td>
+</tr>
+
+<tr>
+<td><button style ="height:20px;width:20px; background-color:250022"onclick="setcolor('250022');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:390134"onclick="setcolor('390134');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:4B0245"onclick="setcolor('4B0245');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:610159"onclick="setcolor('610159');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:6F0166"onclick="setcolor('6F0166');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:810177"onclick="setcolor('810177');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:940288"onclick="setcolor('940288');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:A40196"onclick="setcolor('A40196');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:B003A2"onclick="setcolor('B003A2');"></button></td>
+
+<td><button style ="height:20px;width:20px; background-color:BF05B0"onclick="setcolor('BF05B0');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:CF06BE"onclick="setcolor('CF06BE');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:FF00EA"onclick="setcolor('FF00EA');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:C96902"onclick="setcolor('C96902');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:D66F02"onclick="setcolor('D66F02');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:EA7A02"onclick="setcolor('EA7A02');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:FC8201"onclick="setcolor('FC8201');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:DAC907"onclick="setcolor('DAC907');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:D7C504"onclick="setcolor('D7C504');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:E6D303"onclick="setcolor('E6D303');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:FAE604"onclick="setcolor('FAE604');"></button></td>
+
+<td><button style ="height:20px;width:20px; background-color:E5E505"onclick="setcolor('E5E505');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:ECEC06"onclick="setcolor('ECEC06');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:F8F802"onclick="setcolor('F8F802');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:FDFD04"onclick="setcolor('FDFD04');"></button></td>
+
+</tr>
+
+<tr>
+<td><button style ="height:20px;width:20px; background-color:FCFCF8"onclick="setcolor('FCFCF8');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:D8D8D5"onclick="setcolor('D8D8D5');"></button></td>
+
+<td><button style ="height:20px;width:20px; background-color:C8C8C7"onclick="setcolor('C8C8C7');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:AFAFAE"onclick="setcolor('AFAFAE');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:999996"onclick="setcolor('999996');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:797977"onclick="setcolor('797977');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:3F3F3C"onclick="setcolor('3F3F3C');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:262626"onclick="setcolor('262626');"></button></td>
+<td><button style ="height:20px;width:20px; background-color:000000"onclick="setcolor('000000');"></button></td>
+</tr>
+</table>
+</div>
+</th>
+<th align="center" valign="top"> <b>Drawings</b>
+<br><p id="element"></p><br>
+<br>
+</th>
+</tr>
+</head>
+
+<body>
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+	
+ 	mycanvas=document.getElementById("mycanvas")
+ 	c=mycanvas.getContext("2d")
+ 	 c.fillStyle="white"
+ 	c.fillRect(0,0,900,500)
+ 	if (imagedata==""){
+ 		wholedata=[]
+ 	}else{
+ 		wholedata=imagedata
+ 		draw()
+ 	}
+
+
+ 	color2="black"
+ 	eraserthick=2
+
+ 	filename=[]
+
+ 	//wholedata=imagedata
+ 	//imagedata='['+imagedata+']'
+ 	//alert(JSON.parse(imagedata))
+ 	//lis=JSON.parse(lis)
+	name=""
+	lis='['+lis+']'
+	lis=JSON.parse(lis)
+	for(i in lis){
+	name+='<a href='+lis[i]+' onclick="draw();" id="link">'+lis[i]+'</a><br>'
+		document.getElementById("element").innerHTML=name}
+ 	
+ 	
+ 	function size1(){
+ 	  	c.lineWidth= document.getElementById("sbox").value;  
+ 	}
+ 	function erthick(){
+  		eraserthick=document.getElementById("eraser").value;
+ 	}
+ 	function setcolor(color1){
+  		color2=color1
+  		c.strokeStyle=color1
+  		c.fillStyle=color1  
+ 	}
+ 	function fillobject(press){
+  		fill=(fill+1)%2
+ 	}
+
+
+
+ 	c1=mycanvas.getContext("2d")
+ 	document.onselectstart = function(){ return false; }
+
+ 	function line(){
+ 		setcolor(color2)
+  		document.documentElement.style.cursor="crosshair"
+  		var flag=0
+  		var flag1=0
+  		var rect = mycanvas.getBoundingClientRect()
+  		mycanvas.onmouseup=secondpoint
+  		mycanvas.onmousedown=firstpoint
+  		mycanvas.onmousemove=movepoint
+  		function firstpoint(e1){
+   			im=c.getImageData(0,0,mycanvas.width,mycanvas.height)
+   			rect = mycanvas.getBoundingClientRect()
+   			x1=e1.clientX-rect.left
+   			y1=e1.clientY-rect.top
+   			flag1=1 
+   			flag=0
+  		}
+  
+  		function secondpoint(){
+   			flag=1
+			var s={"Type":"line", "startpointx":x1,"startpointy":y1,"endpointx":c3,"endpointy":c4,"color":color2}
+			wholedata.push(s)
+			
+			
+  		}
+  		function movepoint(e1){
+   			if(flag==0&&flag1==1){
+    				rect = mycanvas.getBoundingClientRect()
+    				c.putImageData(im,0,0)
+    				c.beginPath()
+    				c.moveTo(x1,y1)
+    				c3=e1.clientX-rect.left
+    				c4=e1.clientY-rect.top
+    				c.lineTo(c3,c4)
+    				c.stroke()
+    				c.closePath()
+    
+   			}
+  		}
+	
+ 	}
+	
+	//function saveline(c1,c2,c3,c4,col){
+	//	wholedata.push("{Type:line, startpoint:("+c1+","+c2+"),endpoint:("+c3+","+c4+"),color:"+col+"}")
+	//}	
+
+ 	function stroke(){
+  		setcolor(color2)
+  		document.documentElement.style.cursor='url("http://cur.cursors-4u.net/user/use-1/use151.cur"),auto'
+  		var flag=0
+  		var flag1=0
+  		var rect = mycanvas.getBoundingClientRect()
+  		mycanvas.onmouseup=secondpoint1
+  		mycanvas.onmousedown=firstpoint1
+  		mycanvas.onmousemove=movepoint1
+  		function firstpoint1(e2){
+   			//c.clearRect(0,0,500,500)
+   			rect = mycanvas.getBoundingClientRect()
+   			x1=e2.clientX-rect.left
+   			y1=e2.clientY-rect.top
+   			flag1=1 
+   			flag=0
+  		}
+  
+  		function secondpoint1(e2){
+   			//c.clearRect(0,0,500,500)
+   			flag=1
+  		}
+  		function movepoint1(e2){
+   			if(flag1==1&&flag==0){
+    				rect = mycanvas.getBoundingClientRect()
+    				c.beginPath()
+    				c.moveTo(x1,y1)
+    				c.lineTo(e2.clientX-rect.left,e2.clientY-rect.top)
+    				c.stroke()
+    				c.closePath()
+   				x1=e2.clientX-rect.left
+   				y1=e2.clientY-rect.top
+    
+   			}
+  		}
+ 	}
+	
+ 	function erase(){
+  		document.documentElement.style.cursor='url("http://cur.cursors-4u.net/others/oth-8/oth759.cur"),auto'
+  		var flag=0
+  		var flag1=0
+  		var rect = mycanvas.getBoundingClientRect()
+  		mycanvas.onmouseup=secondpoint2
+  		mycanvas.onmousedown=firstpoint2
+  		mycanvas.onmousemove=movepoint2
+  		function firstpoint2(e3){
+
+   			flag1=1 
+   			flag=0
+  		}
+  
+  		function secondpoint2(e3){
+   			//c.clearRect(0,0,500,500)
+   			flag=1
+  		}
+  		function movepoint2(e3){
+   			if(flag1==1&&flag==0){
+    				rect = mycanvas.getBoundingClientRect()
+    				c.beginPath()
+    				c.fillStyle="white"
+    				c.arc(e3.clientX-rect.left,e3.clientY-rect.top,eraserthick,0,2*Math.PI,true)
+
+          			c.strokeStyle = 'white'
+    				c.fill()
+          			c.stroke()
+    				//c.closePath()
+   			}
+  		}
+ 	}
+ 
+
+	function clear1(){
+  		c.fillStyle="white"
+  		c.fillRect(0,0,1200,500)
+ 	}
+
+ 	function circle(){
+  		setcolor(color2)
+  		document.documentElement.style.cursor='crosshair'
+  		var flag=0
+  		var flag1=0
+  		var rect = mycanvas.getBoundingClientRect()
+  		mycanvas.onmouseup=secondpoint3
+  		mycanvas.onmousedown=firstpoint3
+  		mycanvas.onmousemove=movepoint3
+  		function firstpoint3(e2){
+  	 		//c.clearRect(0,0,500,500)
+   			rect = mycanvas.getBoundingClientRect()
+   			x4=e2.clientX-rect.left
+   			x=0
+   			y=0
+   			y4=e2.clientY-rect.top
+   			//c.strokeStyle = 'black'
+   			im=c.getImageData(0,0,mycanvas.width,mycanvas.height)
+   			flag1=1 
+   			flag=0
+  		}
+  
+  		function secondpoint3(e2){
+   			//c.clearRect(0,0,500,500)
+   			flag=1
+   			var s={"Type":"circle", "startpointx":x4,"startpointy":y4,"radius":radius,"fill":fill,"color":color2}
+			wholedata.push(s)
+   			
+  		}
+
+  		function movepoint3(e2){
+   			if(flag1==1&&flag==0){
+    				c.putImageData(im,0,0)
+    				c.beginPath()
+    				//c.movePath(x4,y4)
+   				rect = mycanvas.getBoundingClientRect()
+   				x2=e2.clientX-rect.left
+   				y2=e2.clientY-rect.top
+    				x=x2-x4
+    				y=y2-y4
+    				a=Math.pow(x,2)
+    				b=Math.pow(y,2)
+				radius=Math.sqrt(a+b)
+    				c.arc(x4,y4,radius,0,2*Math.PI,true)
+    				if(fill==1){
+     					c.fill()
+    				}
+    				c.stroke() 
+   			}
+  		}
+
+ 	}
+	//function savec(x4,y4,radius,fill,col){
+	//	wholedata.push("{Type:circle, startpoint:("+x4+","+y4+"),radius:"+radius+",fill:"+fill+",color:"+col+"}")
+	//}
+
+
+ 	function rect(){
+  		setcolor(color2)
+  		document.documentElement.style.cursor='crosshair'
+  		var flag=0
+  		var flag1=0
+  		var rect = mycanvas.getBoundingClientRect()
+  		mycanvas.onmouseup=secondpoint4
+  		mycanvas.onmousedown=firstpoint4
+  		mycanvas.onmousemove=movepoint4
+  		function firstpoint4(e2){
+  	 		//c.clearRect(0,0,500,500)
+   			im=c.getImageData(0,0,mycanvas.width,mycanvas.height)
+   			rect1 = mycanvas.getBoundingClientRect()
+   			x4=e2.clientX-rect1.left
+   			y4=e2.clientY-rect1.top
+   			//c.strokeStyle = 'black'
+   
+   			flag1=1 
+   			flag=0
+   			x=0
+   			y=0
+  		}
+  
+  		function secondpoint4(e2){
+  			flag=1
+  			var s={"Type":"Rect", "startpointx":x4,"startpointy":y4,"width":w,"height":h,"fill":fill,"color":color2}
+			wholedata.push(s)
+  		}
+  		function movepoint4(e2){
+   			if(flag==0&&flag1==1){
+    				c.putImageData(im,0,0)
+				w=e2.clientX-rect1.left-x4
+				h=e2.clientY-rect1.top-y4
+    				rect1 = mycanvas.getBoundingClientRect()
+    				c.strokeRect(x4,y4,w,h)
+    				if(fill==1){
+     					c.fillRect(x4,y4,w,h)
+    				}
+   			} 
+  		}
+
+ 	}
+	//function saverec(x4,y4,w,h,fill,color1){
+	//	wholedata.push("{Type:circle, startpoint:("+x4+","+y4+"),width:"+w+",height:"+h+",fill:"+fill+",color:"+col+"}")
+	//}
+	function save(){
+		filename=document.getElementById("tex").value
+		$.post("/",{
+			f:JSON.stringify(filename),
+			parameter:JSON.stringify(wholedata)
+    			
+			},
+			function(data,status){document.write(data)
+			});
+	}
+	
+
+	function draw(){
+		for(i in wholedata){
+			
+			//rect = mycanvas.getBoundingClientRect()
+			if(wholedata[i]['Type']=='line'){
+				c.beginPath()
+				x1=wholedata[i]['startpointx']
+				y1=wholedata[i]['startpointy']
+				x2=wholedata[i]['endpointx']
+				y2=wholedata[i]['endpointy']
+				c.moveTo(x1,y1)
+				c.lineTo(x2,y2)
+				c.strokeStyle=wholedata[i]['color']
+				c.stroke()
+				c.closePath()
+			}
+			if(wholedata[i]['Type']=='circle'){
+				c.beginPath()
+				x1=wholedata[i]['startpointx']
+				y1=wholedata[i]['startpointy']
+				c.arc(x1,y1,wholedata[i]['radius'],0,2*Math.PI,true)
+				c.strokeStyle=wholedata[i]['color']
+				c.fillStyle=wholedata[i]['color']
+				if(wholedata[i]['fill']==1){
+					c.fill()
+				}
+				c.stroke()
+				c.closePath()
+			}
+			if(wholedata[i]['Type']=='Rect'){
+				x1=wholedata[i]['startpointx']
+				y1=wholedata[i]['startpointy']
+				width=wholedata[i]['width']
+				height=wholedata[i]['height']
+				c.strokeStyle=wholedata[i]['color']
+				c.fillStyle=wholedata[i]['color']
+				c.strokeRect(x1,y1,width,height)
+				if(wholedata[i]['fill']==1){
+					c.fillRect(x1,y1,width,height)
+				}
+			}
+		}
+	}
+	
+ 
+ 
+</script>
+
+</body>
+</html>
